@@ -41,10 +41,12 @@ def my_fft(y_det):
     # Pads with 0s automatically if the signal does not match n.
     yf = np.fft.fft(y_det,n=len(xf))# Amptitude. # len 128.
     return xf, yf, y_det
+
 # Returns Frequency of Max Amplitude and Max Amplitude.
 def freq_max_amp(yf,xf):
     yf_half_no_dc = yf[1:int(len(abs(yf))/2)]
-    yf_max_amplitude = max(yf_half_no_dc)
+    # print("UTIL.py/ yf_half_no_dc",abs(yf_half_no_dc))
+    yf_max_amplitude = max(abs(yf_half_no_dc))
     yf_max_index = np.where(yf_half_no_dc == yf_max_amplitude)
     xf_freq_max_amt = xf[yf_max_index] # x value i.e freq in Hz for the max amplitude.
     return yf_max_amplitude, xf_freq_max_amt
@@ -52,7 +54,7 @@ def freq_max_amp(yf,xf):
 # Returns Frequency of Min Amplitude and Min Amplitude.
 def freq_min_amp(yf,xf):
     yf_half_no_dc = yf[1:int(len(abs(yf))/2)] # Remove DC component and half of the FTT 
-    yf_min_amplitude = min(yf_half_no_dc)
+    yf_min_amplitude = min(abs(yf_half_no_dc))
     yf_min_index = np.where(yf_half_no_dc == yf_min_amplitude) # Get the index of the min amplidude
     xf_freq_min_amt = xf[yf_min_index] # x value i.e freq in Hz for the max amplitude.
     return yf_min_amplitude, xf_freq_min_amt 

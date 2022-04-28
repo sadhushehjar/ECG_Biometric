@@ -78,7 +78,7 @@ def update_graph(pid):
     normalized_arr_ecg = preprocessing.normalize([df.iloc[:, 3]])
     # FFT for Normalized ECG.
     xf_norm, yf_norm, y_det_norm = my_fft(normalized_arr_ecg[0])
-
+    # calculate max, min mean amptitude.
     yf_max_amplitude, xf_freq_max_amt = freq_max_amp(yf,xf)
     yf_norm_max_amplitude, xf_norm_freq_max_amt = freq_max_amp(yf_norm, xf_norm)
     #print("RAW yf_max_amplitude, xf_freq_max_amt: ",yf_max_amplitude,xf_freq_max_amt)
